@@ -196,6 +196,99 @@
             font-size: 1.5rem;
             margin: 15px 0;
         }
+        /* СТИЛИ ДЛЯ КРАСИВОГО КАЛЕНДАРЯ И ПРОЯВЛЕНИЯ ТАЙМЕРА */
+.calendar-card {
+    background: #8a1c14 !important; /* Насильно включаем бордовый фон */
+    color: #ffffff !important;     /* Делаем весь текст внутри белым */
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 30px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+.calendar-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    color: #ffffff !important;
+    margin-bottom: 20px;
+}
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+.calendar-table th {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding-bottom: 15px;
+    color: #ffffff !important;
+    letter-spacing: 2px;
+}
+.calendar-table td {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    position: relative;
+    width: 14.28%;
+    color: #ffffff !important;
+}
+/* Белое контурное сердечко вокруг числа 14 */
+.active-date {
+    position: relative;
+    z-index: 1;
+    font-weight: bold;
+}
+.active-date::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
+    background-size: contain;
+    z-index: -1;
+}
+.calendar-time {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: #ffffff !important;
+    margin-top: 15px;
+}
+/* Стили для проявления таймера внутри карточки */
+.timer-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.timer-item {
+    background: rgba(255, 255, 255, 0.2) !important; /* Делаем полупрозрачные плашки */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 65px;
+    text-align: center;
+}
+.timer-item span {
+    color: #ffffff !important; /* Проявляем цифры */
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+}
+.timer-item label {
+    color: rgba(255, 255, 255, 0.8) !important; /* Проявляем слова Күн, Сағат... */
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 2px;
+}
     </style>
 </head>
 <body>
