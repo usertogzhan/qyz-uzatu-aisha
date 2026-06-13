@@ -2,14 +2,18 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Қыз ұзату – Айша</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background: #000;
+  color: white;
 }
 
+/* HERO */
 .hero {
   height: 100vh;
   display: flex;
@@ -19,42 +23,51 @@ body {
 
   background: url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e') center/cover no-repeat;
   position: relative;
-  color: white;
 }
 
 .hero::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
+  inset: 0;
+  background: rgba(0,0,0,0.55);
 }
 
 .content {
   position: relative;
-  animation: fadeIn 2s ease-in-out;
+  animation: fadeUp 2s ease;
 }
 
 h1 {
-  font-size: 55px;
-  margin-bottom: 10px;
+  font-size: 60px;
+  margin: 0;
 }
 
 p {
   font-size: 20px;
-  margin: 5px 0;
+  margin: 8px 0;
 }
 
-.date, .place {
-  font-weight: bold;
+/* TIMER */
+.timer {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
+.box {
+  background: rgba(255,255,255,0.15);
+  padding: 10px 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  min-width: 70px;
+}
+
+/* BUTTON */
 .btn {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 25px;
+  margin-top: 25px;
+  padding: 12px 30px;
   background: #ff4d6d;
   color: white;
   text-decoration: none;
@@ -63,30 +76,90 @@ p {
 }
 
 .btn:hover {
-  background: #ff2d55;
   transform: scale(1.05);
+  background: #ff2d55;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
+/* RSVP */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+  background: #0b0b0b;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {opacity: 0; transform: translateY(30px);}
   to {opacity: 1; transform: translateY(0);}
 }
 </style>
-
 </head>
 
 <body>
 
+<!-- HERO -->
 <div class="hero">
   <div class="content">
-    <h1>Қыз ұзату – Аиша</h1>
-    <p>Сіздерді қуанышымызға ортақ болуға шақырамыз</p>
-    <p class="date">📅 20 июль 2026</p>
-    <p class="place">📍 Алматы</p>
+    <h1>Қыз ұзату – Айша</h1>
+    <p>Сіздерді қуанышымызға шақырамыз</p>
+    <p>📅 14 тамыз 2026 | 📍 Алматы</p>
 
-    <a class="btn" href="#">Я приду</a>
+    <!-- TIMER -->
+    <div class="timer">
+      <div class="box"><div id="days">0</div>күн</div>
+      <div class="box"><div id="hours">0</div>сағ</div>
+      <div class="box"><div id="minutes">0</div>мин</div>
+      <div class="box"><div id="seconds">0</div>сек</div>
+    </div>
+
+    <a class="btn" href="#rsvp">Келемін</a>
   </div>
 </div>
+
+<!-- RSVP -->
+<div class="section" id="rsvp">
+  <h2>Тойға келетініңізді растауыңызды сұраймыз!</h2>
+  <input type="text" placeholder="Атыңыз">
+  <input type="text" placeholder="Қанша адам келесіздер?">
+  <br><br>
+  <button>Жіберу</button>
+</div>
+
+<script>
+// TIMER
+const eventDate = new Date("August 14, 2026 18:00:00").getTime();
+
+setInterval(function () {
+  const now = new Date().getTime();
+  const diff = eventDate - now;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+}, 1000);
+</script>
 
 </body>
 </html>
