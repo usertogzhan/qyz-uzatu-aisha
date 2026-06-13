@@ -8,28 +8,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {margin:0;padding:0;box-sizing:border-box;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-body {
-  font-family: 'Montserrat', sans-serif;
+body{
+  font-family:'Montserrat',sans-serif;
   background:#000;
   color:white;
   overflow-x:hidden;
-  scroll-behavior:smooth;
 }
 
-/* HERO */
-.hero {
+/* HERO VIDEO BACKGROUND (premium effect) */
+.hero{
   height:100vh;
-  background:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e') center/cover fixed;
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
   text-align:center;
+  overflow:hidden;
 }
 
-.hero::before{
+.hero video{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero::after{
   content:"";
   position:absolute;
   inset:0;
@@ -39,11 +49,13 @@ body {
 .hero-content{
   position:relative;
   animation:fadeUp 2s ease;
+  z-index:2;
 }
 
 h1{
   font-family:'Playfair Display',serif;
-  font-size:70px;
+  font-size:72px;
+  letter-spacing:1px;
 }
 
 .subtitle{
@@ -52,7 +64,7 @@ h1{
   opacity:.9;
 }
 
-/* TIMER */
+/* GLASS TIMER */
 .timer{
   display:flex;
   gap:12px;
@@ -62,10 +74,10 @@ h1{
 
 .timer div{
   background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(12px);
   padding:15px;
-  border-radius:15px;
-  backdrop-filter:blur(10px);
-  min-width:75px;
+  border-radius:16px;
+  min-width:80px;
 }
 
 .timer span{
@@ -73,12 +85,12 @@ h1{
   font-weight:600;
 }
 
-/* BUTTON */
+/* GOLD BUTTON */
 .btn{
   display:inline-block;
   margin-top:25px;
-  padding:12px 28px;
-  background:gold;
+  padding:14px 34px;
+  background:linear-gradient(45deg,#d4af37,#ffdd77);
   color:black;
   border-radius:30px;
   font-weight:600;
@@ -86,15 +98,17 @@ h1{
   transition:.3s;
 }
 
-.btn:hover{transform:scale(1.05);}
+.btn:hover{
+  transform:scale(1.05);
+}
 
 /* SECTIONS */
 .section{
-  padding:90px 20px;
+  padding:100px 20px;
   text-align:center;
   background:#0b0b0b;
   opacity:0;
-  transform:translateY(40px);
+  transform:translateY(50px);
   transition:1s;
 }
 
@@ -105,20 +119,30 @@ h1{
 
 h2{
   font-family:'Playfair Display',serif;
-  font-size:42px;
+  font-size:44px;
   margin-bottom:20px;
 }
 
-/* GALLERY */
+/* EVENT CARD */
+.card{
+  display:inline-block;
+  background:rgba(255,255,255,0.06);
+  padding:25px;
+  border-radius:20px;
+  margin-top:20px;
+  backdrop-filter:blur(10px);
+}
+
+/* GALLERY GRID */
 .gallery{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
+  margin-top:20px;
 }
 
 .gallery img{
-  width:200px;
+  width:100%;
   height:250px;
   object-fit:cover;
   border-radius:15px;
@@ -132,9 +156,9 @@ h2{
 /* RSVP */
 input{
   padding:12px;
-  border:none;
-  border-radius:10px;
   margin:5px;
+  border-radius:10px;
+  border:none;
   width:200px;
 }
 
@@ -147,22 +171,20 @@ button{
   cursor:pointer;
 }
 
-/* LEAVES */
-.leaf{
+/* FLOATING PARTICLES */
+.particle{
   position:fixed;
-  top:-50px;
-  width:20px;
-  height:20px;
-  background:rgba(255,255,255,0.2);
+  width:6px;
+  height:6px;
+  background:gold;
   border-radius:50%;
-  animation:fall linear infinite;
-  pointer-events:none;
+  opacity:.6;
+  animation:float 6s linear infinite;
 }
 
-@keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-  }
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
 }
 
 @keyframes fadeUp{
@@ -174,16 +196,15 @@ button{
 
 <body>
 
-<!-- MUSIC -->
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3b3d5c9f5d.mp3">
-</audio>
-
-<!-- HERO -->
+<!-- VIDEO BACKGROUND -->
 <div class="hero">
+  <video autoplay muted loop>
+    <source src="https://cdn.coverr.co/videos/coverr-wedding-hands-clip-5219/1080p.mp4">
+  </video>
+
   <div class="hero-content">
     <h1>Қыз ұзату – Аиша</h1>
-    <div class="subtitle">Сіздерді ең маңызды күнімізге шақырамыз</div>
+    <div class="subtitle">Сіздерді ең ерекше күнімізге шақырамыз</div>
 
     <div class="timer">
       <div><span id="d">0</span><br>дней</div>
@@ -192,21 +213,25 @@ button{
       <div><span id="s">0</span><br>сек</div>
     </div>
 
-    <a class="btn" href="#info">Открыть</a>
+    <a class="btn" href="#info">Открыть приглашение</a>
   </div>
 </div>
 
 <!-- INFO -->
 <div class="section" id="info">
-  <h2>Детали</h2>
-  <p>📅 20 июль 2026</p>
-  <p>📍 Алматы</p>
-  <p>⏰ 18:00</p>
+  <h2>Детали события</h2>
+
+  <div class="card">
+    📅 20 июль 2026<br>
+    📍 Алматы<br>
+    ⏰ 18:00
+  </div>
 </div>
 
 <!-- GALLERY -->
 <div class="section">
   <h2>Галерея</h2>
+
   <div class="gallery">
     <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
     <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
@@ -217,10 +242,11 @@ button{
 <!-- RSVP -->
 <div class="section">
   <h2>RSVP</h2>
+
   <input placeholder="Имя">
   <input placeholder="Гости">
   <br>
-  <button onclick="alert('Спасибо 💛')">Я приду</button>
+  <button onclick="alert('Вы добавлены 💛')">Я приду</button>
 </div>
 
 <script>
@@ -249,17 +275,17 @@ window.addEventListener("scroll",()=>{
   });
 });
 
-/* FALLING EFFECT */
-function createLeaf(){
-  const leaf=document.createElement("div");
-  leaf.classList.add("leaf");
-  leaf.style.left=Math.random()*100+"vw";
-  leaf.style.animationDuration=3+Math.random()*5+"s";
-  document.body.appendChild(leaf);
+/* PARTICLES */
+function createParticle(){
+  const p=document.createElement("div");
+  p.classList.add("particle");
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(p);
 
-  setTimeout(()=>leaf.remove(),8000);
+  setTimeout(()=>p.remove(),8000);
 }
-setInterval(createLeaf,300);
+setInterval(createParticle,200);
 
 </script>
 
