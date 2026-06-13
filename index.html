@@ -8,11 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:'Montserrat',sans-serif;
@@ -21,22 +17,15 @@ body{
   overflow-x:hidden;
 }
 
-/* HERO VIDEO BACKGROUND (premium effect) */
+/* HERO */
 .hero{
   height:100vh;
-  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  overflow:hidden;
-}
-
-.hero video{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  position:relative;
+  background:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e') center/cover no-repeat;
 }
 
 .hero::after{
@@ -46,69 +35,68 @@ body{
   background:rgba(0,0,0,0.55);
 }
 
-.hero-content{
+.content{
   position:relative;
-  animation:fadeUp 2s ease;
   z-index:2;
+  animation:fadeUp 2s ease;
 }
 
 h1{
   font-family:'Playfair Display',serif;
-  font-size:72px;
-  letter-spacing:1px;
+  font-size:70px;
 }
 
 .subtitle{
-  font-size:20px;
   margin-top:10px;
   opacity:.9;
 }
 
-/* GLASS TIMER */
+/* TIMER */
 .timer{
   display:flex;
-  gap:12px;
+  gap:10px;
   justify-content:center;
-  margin-top:25px;
+  margin-top:20px;
 }
 
 .timer div{
   background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(12px);
-  padding:15px;
-  border-radius:16px;
-  min-width:80px;
+  padding:12px;
+  border-radius:12px;
+  min-width:70px;
+  backdrop-filter:blur(10px);
 }
 
-.timer span{
-  font-size:22px;
-  font-weight:600;
-}
-
-/* GOLD BUTTON */
+/* BUTTONS */
 .btn{
   display:inline-block;
-  margin-top:25px;
-  padding:14px 34px;
+  margin-top:20px;
+  padding:12px 28px;
+  border-radius:30px;
   background:linear-gradient(45deg,#d4af37,#ffdd77);
   color:black;
-  border-radius:30px;
   font-weight:600;
   text-decoration:none;
-  transition:.3s;
+  cursor:pointer;
 }
 
-.btn:hover{
-  transform:scale(1.05);
+.small-btn{
+  margin-top:10px;
+  background:#222;
+  color:white;
+  padding:10px 15px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
 }
 
-/* SECTIONS */
+/* SECTION */
 .section{
-  padding:100px 20px;
+  padding:80px 20px;
   text-align:center;
   background:#0b0b0b;
   opacity:0;
-  transform:translateY(50px);
+  transform:translateY(40px);
   transition:1s;
 }
 
@@ -119,92 +107,74 @@ h1{
 
 h2{
   font-family:'Playfair Display',serif;
-  font-size:44px;
-  margin-bottom:20px;
+  font-size:40px;
+  margin-bottom:15px;
 }
 
-/* EVENT CARD */
+/* CARD */
 .card{
   display:inline-block;
   background:rgba(255,255,255,0.06);
-  padding:25px;
-  border-radius:20px;
-  margin-top:20px;
+  padding:20px;
+  border-radius:15px;
   backdrop-filter:blur(10px);
 }
 
-/* GALLERY GRID */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:12px;
-  margin-top:20px;
-}
-
-.gallery img{
-  width:100%;
-  height:250px;
-  object-fit:cover;
-  border-radius:15px;
-  transition:.3s;
-}
-
-.gallery img:hover{
-  transform:scale(1.05);
-}
-
-/* RSVP */
-input{
-  padding:12px;
-  margin:5px;
-  border-radius:10px;
-  border:none;
-  width:200px;
-}
-
-button{
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  background:gold;
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* FLOATING PARTICLES */
-.particle{
+/* MUSIC BUTTON */
+.music{
   position:fixed;
-  width:6px;
-  height:6px;
+  bottom:20px;
+  right:20px;
   background:gold;
-  border-radius:50%;
-  opacity:.6;
-  animation:float 6s linear infinite;
+  color:black;
+  padding:10px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:600;
+  z-index:10;
 }
 
-@keyframes float{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
+/* LEAVES */
+.leaf{
+  position:fixed;
+  top:-10px;
+  width:10px;
+  height:10px;
+  background:rgba(255,215,0,0.8);
+  border-radius:50%;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
 }
 
 @keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px);}
+  from{opacity:0;transform:translateY(20px);}
   to{opacity:1;transform:translateY(0);}
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  h1{font-size:42px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- VIDEO BACKGROUND -->
-<div class="hero">
-  <video autoplay muted loop>
-    <source src="https://cdn.coverr.co/videos/coverr-wedding-hands-clip-5219/1080p.mp4">
-  </video>
+<!-- MUSIC -->
+<audio id="music" autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3b3d5c9f5d.mp3">
+</audio>
 
-  <div class="hero-content">
+<div class="music" onclick="toggleMusic()">🎵 Music</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="content">
     <h1>Қыз ұзату – Аиша</h1>
-    <div class="subtitle">Сіздерді ең ерекше күнімізге шақырамыз</div>
+    <div class="subtitle">Сіздерді қуанышымызға шақырамыз</div>
 
     <div class="timer">
       <div><span id="d">0</span><br>дней</div>
@@ -213,40 +183,33 @@ button{
       <div><span id="s">0</span><br>сек</div>
     </div>
 
-    <a class="btn" href="#info">Открыть приглашение</a>
+    <a class="btn" href="#info">Открыть</a>
   </div>
 </div>
 
 <!-- INFO -->
 <div class="section" id="info">
-  <h2>Детали события</h2>
+  <h2>Детали</h2>
 
   <div class="card">
     📅 20 июль 2026<br>
     📍 Алматы<br>
     ⏰ 18:00
   </div>
-</div>
 
-<!-- GALLERY -->
-<div class="section">
-  <h2>Галерея</h2>
-
-  <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
-    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
-    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
-  </div>
+  <br><br>
+  <button class="small-btn" onclick="copyText()">📋 Скопировать адрес</button>
 </div>
 
 <!-- RSVP -->
 <div class="section">
   <h2>RSVP</h2>
-
-  <input placeholder="Имя">
-  <input placeholder="Гости">
-  <br>
-  <button onclick="alert('Вы добавлены 💛')">Я приду</button>
+  <div class="card">
+    <input id="name" placeholder="Имя" style="padding:10px;border-radius:8px;border:none;margin:5px;">
+    <input id="count" placeholder="Гостей" style="padding:10px;border-radius:8px;border:none;margin:5px;">
+    <br>
+    <button class="btn" onclick="sendTelegram()">Я приду</button>
+  </div>
 </div>
 
 <script>
@@ -264,9 +227,8 @@ setInterval(()=>{
   document.getElementById("s").innerText = Math.floor((diff/1000)%60);
 },1000);
 
-/* SCROLL ANIMATION */
+/* SCROLL */
 const sections=document.querySelectorAll(".section");
-
 window.addEventListener("scroll",()=>{
   sections.forEach(s=>{
     if(s.getBoundingClientRect().top < window.innerHeight-100){
@@ -275,17 +237,40 @@ window.addEventListener("scroll",()=>{
   });
 });
 
-/* PARTICLES */
-function createParticle(){
-  const p=document.createElement("div");
-  p.classList.add("particle");
-  p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=(3+Math.random()*5)+"s";
-  document.body.appendChild(p);
-
-  setTimeout(()=>p.remove(),8000);
+/* MUSIC */
+function toggleMusic(){
+  let m=document.getElementById("music");
+  if(m.paused) m.play();
+  else m.pause();
 }
-setInterval(createParticle,200);
+
+/* COPY */
+function copyText(){
+  navigator.clipboard.writeText("Алматы, банкет залы");
+  alert("Скопировано 💛");
+}
+
+/* TELEGRAM RSVP */
+function sendTelegram(){
+  let name=document.getElementById("name").value;
+  let count=document.getElementById("count").value;
+
+  let text=`RSVP:%0AИмя: ${name}%0AГости: ${count}`;
+
+  window.open("https://t.me/share/url?url=&text="+text,"_blank");
+}
+
+/* LEAVES */
+function leaf(){
+  let el=document.createElement("div");
+  el.classList.add("leaf");
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=3+Math.random()*5+"s";
+  document.body.appendChild(el);
+
+  setTimeout(()=>el.remove(),8000);
+}
+setInterval(leaf,200);
 
 </script>
 
