@@ -3,200 +3,264 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Қыз ұзату – Айша</title>
+<title>Қыз ұзату – Аиша</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* {margin:0;padding:0;box-sizing:border-box;}
 
 body {
   font-family: 'Montserrat', sans-serif;
-  color: white;
-  background: #000;
-  scroll-behavior: smooth;
+  background:#000;
+  color:white;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
 /* HERO */
 .hero {
-  height: 100vh;
-  background: url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e') center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  text-align: center;
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e') center/cover fixed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  text-align:center;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
 }
 
-.hero-content {
-  position: relative;
-  animation: fadeUp 2s ease;
+.hero-content{
+  position:relative;
+  animation:fadeUp 2s ease;
 }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 64px;
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:70px;
 }
 
-.subtitle {
-  font-size: 20px;
-  margin-top: 10px;
-  opacity: 0.9;
+.subtitle{
+  font-size:20px;
+  margin-top:10px;
+  opacity:.9;
 }
 
-/* TIMER VIP */
-.timer {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 25px;
+/* TIMER */
+.timer{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top:25px;
 }
 
-.timer div {
-  background: rgba(255,255,255,0.12);
-  padding: 15px;
-  border-radius: 15px;
-  min-width: 80px;
-  backdrop-filter: blur(10px);
+.timer div{
+  background:rgba(255,255,255,0.12);
+  padding:15px;
+  border-radius:15px;
+  backdrop-filter:blur(10px);
+  min-width:75px;
 }
 
-.timer span {
-  font-size: 22px;
-  font-weight: 600;
+.timer span{
+  font-size:22px;
+  font-weight:600;
 }
 
 /* BUTTON */
-.btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 12px 30px;
-  background: #d4af37;
-  color: black;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
+.btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:12px 28px;
+  background:gold;
+  color:black;
+  border-radius:30px;
+  font-weight:600;
+  text-decoration:none;
+  transition:.3s;
 }
 
-.btn:hover {
-  transform: scale(1.05);
+.btn:hover{transform:scale(1.05);}
+
+/* SECTIONS */
+.section{
+  padding:90px 20px;
+  text-align:center;
+  background:#0b0b0b;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
 }
 
-/* SECTION */
-.section {
-  padding: 80px 20px;
-  text-align: center;
-  background: #0b0b0b;
+.section.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-  margin-bottom: 20px;
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  margin-bottom:20px;
 }
 
-.info {
-  opacity: 0.8;
-  font-size: 18px;
+/* GALLERY */
+.gallery{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.gallery img{
+  width:200px;
+  height:250px;
+  object-fit:cover;
+  border-radius:15px;
+  transition:.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
 }
 
 /* RSVP */
-.form {
-  margin-top: 20px;
+input{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  margin:5px;
+  width:200px;
 }
 
-input {
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  margin: 5px;
-  width: 200px;
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:gold;
+  font-weight:600;
+  cursor:pointer;
 }
 
-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  background: #d4af37;
-  cursor: pointer;
-  font-weight: 600;
+/* LEAVES */
+.leaf{
+  position:fixed;
+  top:-50px;
+  width:20px;
+  height:20px;
+  background:rgba(255,255,255,0.2);
+  border-radius:50%;
+  animation:fall linear infinite;
+  pointer-events:none;
 }
 
-/* ANIMATION */
-@keyframes fadeUp {
-  from {opacity: 0; transform: translateY(30px);}
-  to {opacity: 1; transform: translateY(0);}
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- MUSIC (можешь заменить ссылку) -->
+<!-- MUSIC -->
 <audio autoplay loop>
-  <source src="https://agugai.kz/music/zhazira-lyazzat-bayyrbekovalar-kazak-aruy" type="audio/mp3">
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3b3d5c9f5d.mp3">
 </audio>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-content">
-    <h1>Қыз ұзату – Айша</h1>
-    <div class="subtitle">Сіздерді біздің ең маңызды күнімізге шақырамыз</div>
+    <h1>Қыз ұзату – Аиша</h1>
+    <div class="subtitle">Сіздерді ең маңызды күнімізге шақырамыз</div>
 
     <div class="timer">
-      <div><span id="days">0</span><br>дней</div>
-      <div><span id="hours">0</span><br>часов</div>
-      <div><span id="minutes">0</span><br>мин</div>
-      <div><span id="seconds">0</span><br>сек</div>
+      <div><span id="d">0</span><br>дней</div>
+      <div><span id="h">0</span><br>час</div>
+      <div><span id="m">0</span><br>мин</div>
+      <div><span id="s">0</span><br>сек</div>
     </div>
 
-    <a class="btn" href="#info">Открыть приглашение</a>
+    <a class="btn" href="#info">Открыть</a>
   </div>
 </div>
 
 <!-- INFO -->
 <div class="section" id="info">
-  <h2>Детали мероприятия</h2>
-  <p class="info">📅 20 июль 2026</p>
-  <p class="info">📍 Алматы</p>
-  <p class="info">⏰ 18:00</p>
+  <h2>Детали</h2>
+  <p>📅 20 июль 2026</p>
+  <p>📍 Алматы</p>
+  <p>⏰ 18:00</p>
+</div>
+
+<!-- GALLERY -->
+<div class="section">
+  <h2>Галерея</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
+    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
+    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
+  </div>
 </div>
 
 <!-- RSVP -->
 <div class="section">
-  <h2>Подтверждение</h2>
-  <div class="form">
-    <input type="text" placeholder="Ваше имя">
-    <input type="text" placeholder="Гости">
-    <br>
-    <button onclick="alert('Спасибо! Вы добавлены 💛')">Я приду</button>
-  </div>
+  <h2>RSVP</h2>
+  <input placeholder="Имя">
+  <input placeholder="Гости">
+  <br>
+  <button onclick="alert('Спасибо 💛')">Я приду</button>
 </div>
 
 <script>
-// TIMER
-const eventDate = new Date("July 20, 2026 18:00:00").getTime();
 
-setInterval(() => {
-  const now = new Date().getTime();
-  const diff = eventDate - now;
+/* TIMER */
+const date = new Date("July 20, 2026 18:00:00").getTime();
 
-  document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
-  document.getElementById("hours").innerText = Math.floor((diff / (1000*60*60)) % 24);
-  document.getElementById("minutes").innerText = Math.floor((diff / (1000*60)) % 60);
-  document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
-}, 1000);
+setInterval(()=>{
+  let now = new Date().getTime();
+  let diff = date - now;
+
+  document.getElementById("d").innerText = Math.floor(diff/(1000*60*60*24));
+  document.getElementById("h").innerText = Math.floor((diff/(1000*60*60))%24);
+  document.getElementById("m").innerText = Math.floor((diff/(1000*60))%60);
+  document.getElementById("s").innerText = Math.floor((diff/1000)%60);
+},1000);
+
+/* SCROLL ANIMATION */
+const sections=document.querySelectorAll(".section");
+
+window.addEventListener("scroll",()=>{
+  sections.forEach(s=>{
+    if(s.getBoundingClientRect().top < window.innerHeight-100){
+      s.classList.add("show");
+    }
+  });
+});
+
+/* FALLING EFFECT */
+function createLeaf(){
+  const leaf=document.createElement("div");
+  leaf.classList.add("leaf");
+  leaf.style.left=Math.random()*100+"vw";
+  leaf.style.animationDuration=3+Math.random()*5+"s";
+  document.body.appendChild(leaf);
+
+  setTimeout(()=>leaf.remove(),8000);
+}
+setInterval(createLeaf,300);
+
 </script>
 
 </body>
